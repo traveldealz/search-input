@@ -1,4 +1,4 @@
-import Base from './base-component';
+import Base from './base-component.js';
 
 export default class extends Base {
 
