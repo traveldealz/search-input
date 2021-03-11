@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script src="./dist/index.js" type="module"></script>
+	<style>
+		input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			background-color: #fff;
+			background-color: inherit;
+			color: inherit;
+			border-color: rgba(230, 230, 230);
+			border-width: 1px;
+			border-radius: 0;
+			padding: .5rem .75rem;
+			font-size: 1rem;
+			line-height: 1.5rem;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>Airport Search</h2>
+	<div style="width:250px;">
+		<airport-search><input></airport-search>
+	</div>
+	<h2>Destination Search</h2>
+	<div style="width:250px;">
+		<destination-search fetch="https://cors-anywhere.herokuapp.com/https://travel-dealz.de"><input></destination-search>
+	</div>
+</body>
+
+</html>
