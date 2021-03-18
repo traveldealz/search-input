@@ -69,7 +69,7 @@ export default class extends Base {
     this.el_input.addEventListener('blur', () => window.setTimeout( () => this.loadAirport(), 100 ) );
 
 		if (this.airports) {
-			this.loadAirports();
+			//this.loadAirports();
 		}
 
 		this.loadAirport();
