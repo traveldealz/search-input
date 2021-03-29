@@ -60,6 +60,8 @@ export default class extends Base {
 	select( item ) {
 		if (this.el_input.value !== item.slug) {
 			this.el_input.value = item.slug;
+			this.el_input.dispatchEvent(new Event('change'));
+			this.el_input.dispatchEvent(new Event('change', { bubbles: true }));
 		}
 		this.setOverlay(item.name);
 		this.hideList('');
