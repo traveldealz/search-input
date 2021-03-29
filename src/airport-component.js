@@ -167,6 +167,7 @@ export default class extends Base {
 	select( iatacode, name = null, location = null, country = null ) {
 		if (this.el_input.value !== iatacode) {
 			this.el_input.value = iatacode;
+			this.el_input.dispatchEvent(new Event('change', { bubbles: true }));
 		}
 		this.setOverlay(iatacode, name, location, country);
 		this.hideList('');

@@ -271,6 +271,7 @@ export default class extends HTMLElement {
 	select( item ) {
 		if (this.el_input.value !== item.value) {
 			this.el_input.value = item.value;
+			this.el_input.dispatchEvent(new Event('change', { bubbles: true }));
 		}
 		this.setOverlay(item.value);
 		this.hideList('');
