@@ -26,6 +26,9 @@ export default class extends Base {
 				}
 				this.results = data.slice(0,6);
 				this.updateList();
+			})
+			.catch((error) => {
+				console.error('Error:', error);
 			});
 	}
 
