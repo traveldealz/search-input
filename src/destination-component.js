@@ -6,7 +6,7 @@ export default class extends Base {
 
     super.connectedCallback();
 
-    this.fetch = this.hasAttribute('fetch') ? this.getAttribute('fetch') : '';
+    this.endpoint = this.hasAttribute('endpoint') ? this.getAttribute('endpoint') : '/wp-json/wp/v2/destinations';
 
 	}
 
@@ -18,7 +18,7 @@ export default class extends Base {
 			return;
 		}
 
-		fetch(this.fetch + '/wp-json/wp/v2/destinations?per_page=20&orderby=count&order=desc&_fields=id,name,slug&search=' + encodeURIComponent(search))
+		fetch(this.endpoint + '?per_page=20&orderby=count&order=desc&_fields=id,name,slug&search=' + encodeURIComponent(search))
 			.then((response) => response.json())
 			.then((data) => {
 				if (0 === data.length) {
