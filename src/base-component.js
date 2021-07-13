@@ -197,9 +197,6 @@ export default class extends HTMLElement {
 				}
 				this.results = data.slice(0,6);
 				this.updateList();
-			})
-			.catch((error) => {
-				console.error('Error:', error);
 			});
 	}
 
