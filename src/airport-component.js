@@ -120,9 +120,6 @@ export default class extends Base {
 				}
 				this.results = data.data.slice(0,6);
 				this.updateList();
-			})
-			.catch((error) => {
-				console.error('Error:', error);
 			});
 	}
 
@@ -142,9 +139,6 @@ export default class extends Base {
 				}
 
 				this.setList();
-			})
-			.catch((error) => {
-				console.error('Error:', error);
 			});
 	}
 
@@ -201,9 +195,6 @@ export default class extends Base {
 					return;
 				}
 				this.setOverlay( data.iatacode, data.name, data.location, data.country );
-			})
-			.catch((error) => {
-				console.error('Error:', error);
 			});
 	}
 }

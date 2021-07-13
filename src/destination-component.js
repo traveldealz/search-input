@@ -2,11 +2,13 @@ import Base from './base-component.js';
 
 export default class extends Base {
 
+	endpoint = '/wp-json/wp/v2/destinations';
+
 	connectedCallback() {
 
     super.connectedCallback();
 
-    this.endpoint = this.hasAttribute('endpoint') ? this.getAttribute('endpoint') : '/wp-json/wp/v2/destinations';
+    this.endpoint = this.hasAttribute('endpoint') ? this.getAttribute('endpoint') : this.endpoint;
 
 	}
 
@@ -26,9 +28,6 @@ export default class extends Base {
 				}
 				this.results = data.slice(0,6);
 				this.updateList();
-			})
-			.catch((error) => {
-				console.error('Error:', error);
 			});
 	}
 
