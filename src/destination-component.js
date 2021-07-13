@@ -2,13 +2,13 @@ import Base from './base-component.js';
 
 export default class extends Base {
 
-	fetch = null;
+	endpoint = null;
 
 	connectedCallback() {
 
     super.connectedCallback();
 
-    this.fetch = this.hasAttribute('fetch') ? this.getAttribute('fetch') : this.fetch;
+    this.endpoint = this.hasAttribute('endpoint') ? this.getAttribute('endpoint') : this.endpoint;
 
 	}
 
@@ -20,7 +20,7 @@ export default class extends Base {
 			return;
 		}
 
-		fetch(this.fetch + '?per_page=20&orderby=count&order=desc&_fields=id,name,slug&search=' + encodeURIComponent(search))
+		fetch(this.endpoint + '?per_page=20&orderby=count&order=desc&_fields=id,name,slug&search=' + encodeURIComponent(search))
 			.then((response) => response.json())
 			.then((data) => {
 				if (0 === data.length) {
