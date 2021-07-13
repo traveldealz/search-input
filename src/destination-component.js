@@ -2,7 +2,7 @@ import Base from './base-component.js';
 
 export default class extends Base {
 
-	endpoint = null;
+	endpoint = '/wp-json/wp/v2/destinations';
 
 	connectedCallback() {
 
