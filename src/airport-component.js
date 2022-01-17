@@ -4,7 +4,7 @@ const style = /*css*/`
 
   .selected_item {
 		font-size: .8rem;
-  }
+  } 
 
 	.airport_text {
 		min-width: 0;
@@ -180,6 +180,7 @@ export default class extends Base {
 
 	loadAirport( value = this.el_input.value ) {
 		if (3 !== value.length) {
+			this.el_selected.style.display = 'none';
 			return;
 		}
 		let overlay = this.el_selected.querySelector('.airport_code_label');
