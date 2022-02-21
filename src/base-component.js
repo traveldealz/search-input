@@ -2,12 +2,15 @@ const template = document.createElement('template');
 template.innerHTML = /*html*/`
 <style>
 	.selected_wrapper {
+		all: initial;
 		position: absolute;
 		top: .1rem;
 		bottom: .1rem;
 		right: .25rem;
 		left: .25rem;
 		align-items: center;
+		width: 100%;
+		cursor: pointer;
 	}
 
   .selected_item {
@@ -43,6 +46,16 @@ template.innerHTML = /*html*/`
 		left: 0px;
 	}
 
+	.result_list_item {
+		display: flex;
+	}
+
+	.result_list_item_button:hover, .result_list_item[aria-selected="true"] .result_list_item_button {
+		background-color: #005EA5;
+		border-color: #005EA5;
+		color: #ffffff;
+	}
+
   .result_list_item_button {
 		all: initial;
 		cursor: pointer;
@@ -51,22 +64,16 @@ template.innerHTML = /*html*/`
 		padding-top: .25rem;
 		padding-left: .5rem;
 		padding-right: .5rem;
-		width: 100%;
 		display: flex;
+		width: 100%;
 		justify-content: space-between;
 		border-bottom: rgba(230,230,230) solid 1px;
-	}
-
-  .result_list_item_button:hover, .result_list_item[aria-selected="true"] .result_list_item_button {
-		background-color: #005EA5;
-		border-color: #005EA5;
-		color: #ffffff;
 	}
 
 </style>
 <div class="container">
 <slot></slot>
-<div class="selected_wrapper" style="display:none;"></div>
+<button type="button" class="selected_wrapper" style="display:none;"></button>
 </div>
 <div class="container">
 	<ul class="result_list" role="listbox" style="display:none;"></ul>
