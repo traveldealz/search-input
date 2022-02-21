@@ -38,6 +38,7 @@ const style = /*css*/`
 		text-decoration: none;
 		border-radius: 3px;
 	}
+
 `;
 
 const style_dark = `
@@ -153,9 +154,13 @@ export default class extends Base {
 			el.setAttribute('data-name', item.name);
 			el.setAttribute('data-location', item.location);
 			el.setAttribute('data-country', item.country);
-			el.innerHTML = `<div><div class="airport_name">${item.location}, ${item.country}</div><div class="airport_location">${item.name}</div></div><div class="airport_code"><abbr title="${item.name}" class="airport_code_label">${item.iatacode}</abbr></div>`;
-			el.addEventListener( 'click', () => this.select(item.iatacode, item.name, item.location, item.country) );
-			this.el_list.appendChild(el );
+			let el_button = document.createElement('button');
+			el_button.setAttribute('class', 'result_list_item_button');
+			el_button.type = 'button';
+			el_button.innerHTML = `<div><div class="airport_name">${item.location}, ${item.country}</div><div class="airport_location">${item.name}</div></div><div class="airport_code"><abbr title="${item.name}" class="airport_code_label">${item.iatacode}</abbr></div>`;
+			el_button.addEventListener( 'click', () => this.select(item.iatacode, item.name, item.location, item.country) );
+			el.append(el_button);
+			this.el_list.appendChild(el);
 		} );
 	}
 
