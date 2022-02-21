@@ -44,8 +44,12 @@ export default class extends Base {
 			el.setAttribute('data-id', item.id);
 			el.setAttribute('data-name', item.name);
       el.setAttribute('data-slug', item.slug);
-			el.innerHTML = `<div>${item.name}</div>`;
-			el.addEventListener( 'click', () => this.select(item) );
+			let el_button = document.createElement('button');
+			el_button.setAttribute('class', 'result_list_item_button');
+			el_button.type = 'button';
+			el_button.addEventListener( 'click', () => this.select(item) );
+			el_button.innerHTML = `<div>${item.name}</div>`;
+			el.append(el_button);
 			this.el_list.appendChild(el);
 		} );
 	}

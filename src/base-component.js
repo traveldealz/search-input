@@ -2,12 +2,15 @@ const template = document.createElement('template');
 template.innerHTML = /*html*/`
 <style>
 	.selected_wrapper {
+		all: initial;
 		position: absolute;
 		top: .1rem;
 		bottom: .1rem;
 		right: .25rem;
 		left: .25rem;
 		align-items: center;
+		width: 100%;
+		cursor: pointer;
 	}
 
   .selected_item {
@@ -36,34 +39,41 @@ template.innerHTML = /*html*/`
 		padding: 0;
 		margin: 0;
 		max-height: 20rem;
+		width: 100%;
 		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
 		right: 0px;
 		left: 0px;
 	}
 
-  .result_list_item {
-		font-size: .9rem;
-		cursor: pointer;
-		padding-bottom: .25rem;
-		padding-top: .25rem;
-		padding-left: .5rem;
-		padding-right: .5rem;
+	.result_list_item {
 		display: flex;
-		justify-content: space-between;
-		border-bottom: rgba(230,230,230) solid 1px;
 	}
 
-  .result_list_item:hover, .result_list_item[aria-selected="true"] {
+	.result_list_item_button:hover, .result_list_item[aria-selected="true"] .result_list_item_button {
 		background-color: #005EA5;
 		border-color: #005EA5;
 		color: #ffffff;
 	}
 
+  .result_list_item_button {
+		all: initial;
+		cursor: pointer;
+		font-size: .9rem;
+		padding-bottom: .25rem;
+		padding-top: .25rem;
+		padding-left: .5rem;
+		padding-right: .5rem;
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		border-bottom: rgba(230,230,230) solid 1px;
+	}
+
 </style>
 <div class="container">
 <slot></slot>
-<div class="selected_wrapper" style="display:none;"></div>
+<button type="button" class="selected_wrapper" style="display:none;"></button>
 </div>
 <div class="container">
 	<ul class="result_list" role="listbox" style="display:none;"></ul>
@@ -229,12 +239,16 @@ export default class extends HTMLElement {
 	setList() {
 		this.results.forEach( item => {
 			let el = document.createElement('li');
-			el.setAttribute('class', 'airport_item');
+			el.setAttribute('class', 'result_list_item');
 			el.setAttribute('role', 'option');
 			el.setAttribute('tabindex', '-1');
 			el.setAttribute('data-value', item.value);
-			el.innerHTML = `<div>${item.value}</div>`;
-			el.addEventListener( 'click', () => this.select(item) );
+			let el_button = document.createElement('button');
+			el_button.setAttribute('class', 'result_list_item_button');
+			el_button.type = 'button';
+			el_button.addEventListener( 'click', () => this.select(item) );
+			el_button.innerHTML = `<div>${item.value}</div>`;
+			el.append(el_button);
 			this.el_list.appendChild(el);
 		} );
 	}
