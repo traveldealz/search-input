@@ -3,6 +3,7 @@ template.innerHTML = /*html*/`
 <style>
 	.selected_wrapper {
 		all: initial;
+		font: inherit;
 		position: absolute;
 		top: .1rem;
 		bottom: .1rem;
@@ -21,7 +22,7 @@ template.innerHTML = /*html*/`
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		padding: 0 .25rem;
+		padding: 0 .5rem 0 .25rem;
 	}
 
 	.container {
@@ -58,6 +59,7 @@ template.innerHTML = /*html*/`
 
   .result_list_item_button {
 		all: initial;
+		font: inherit;
 		cursor: pointer;
 		font-size: .9rem;
 		padding-bottom: .25rem;
