@@ -1,6 +1,39 @@
 import Base from './base-component.js';
 
+const style = /*css*/`
+
+  .selected_item {
+		font-size: .8rem;
+  } 
+
+	.hotel_text {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.hotel_location {
+		font-size: .7rem;
+	}
+
+`;
+
 export default class extends Base {
+
+	connectedCallback() {
+    super.connectedCallback();
+
+    let el_style = document.createElement('style');
+    el_style.innerHTML = style;
+    this.shadowRoot.append(el_style);
+
+		if (this.dark) {
+			let el_dark_style = document.createElement('style');
+			el_dark_style.innerHTML = style_dark;
+			this.shadowRoot.append(el_dark_style);
+		}
+	}
 	
 	onSearch() {
 
@@ -36,13 +69,16 @@ export default class extends Base {
 			el.setAttribute('role', 'option');
 			el.setAttribute('tabindex', '-1');
 			el.setAttribute('aria-selected', 'false');
-			el.setAttribute('data-id', item.id);
 			el.dataset.id = item.id;
 			el.dataset.name = item.name;
 			el.dataset.city = item.city;
 			el.dataset.country = item.country;
-			el.innerHTML = `<div><div>${item.name}</div><div><small>${item.city}, ${item.country}</small></div></div>`;
-			el.addEventListener( 'click', (event) => this.select(item) );
+			let el_button = document.createElement('button');
+			el_button.setAttribute('class', 'result_list_item_button');
+			el_button.type = 'button';
+			el_button.innerHTML = `<div><div>${item.name}</div><div class="hotel_location">${item.city}, ${item.country}</div></div>`;
+			el_button.addEventListener( 'click', (event) => this.select(item) );
+			el.append(el_button);
 			this.el_list.appendChild(el);
 		} );
 	}
@@ -63,7 +99,7 @@ export default class extends Base {
 	}
 
 	setOverlay( name ) {
-		this.el_selected.innerHTML = `<div class="selected_item">${name}</div>`;
+		this.el_selected.innerHTML = `<div class="selected_item"><div class="hotel_text">${name}</div></div>`;
 		this.el_selected.style.display = 'flex';
 	}
 
