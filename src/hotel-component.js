@@ -2,10 +2,6 @@ import Base from './base-component.js';
 
 const style = /*css*/`
 
-  .selected_item {
-		font-size: .8rem;
-  } 
-
 	.hotel_text {
 		min-width: 0;
 		overflow: hidden;
