@@ -9,6 +9,11 @@ const style = /*css*/`
 		white-space: nowrap;
 	}
 
+	.location_code {
+		display: flex;
+		align-items: center;
+	}
+
 	.hotel_location {
 		font-size: .7rem;
 	}
@@ -39,7 +44,7 @@ export default class extends Base {
 			return;
 		}
 
-		fetch('https://photon.komoot.io/api/?q=' + encodeURIComponent(search) + '&osm_tag=tourism:hotel&limit=10')
+		fetch('https://photon.komoot.io/api/?q=' + encodeURIComponent(search) + '&osm_tag=tourism:hotel&osm_tag=place:city&limit=10')
 			.then((response) => response.json())
 			.then((data) => {
         console.log(data);
@@ -56,7 +61,8 @@ export default class extends Base {
 			let item = {};
 			item.id = feature.properties.osm_id;
 			item.name = feature.properties.name;
-			item.city = feature.properties.city;
+			item.type = feature.properties.type;
+			item.city = 'city' === item.type ? feature.properties.name : feature.properties.city;
 			item.country = feature.properties.country;
       return item;
     } ).forEach( item => {
@@ -72,7 +78,7 @@ export default class extends Base {
 			let el_button = document.createElement('button');
 			el_button.setAttribute('class', 'result_list_item_button');
 			el_button.type = 'button';
-			el_button.innerHTML = `<div><div>${item.name}</div><div class="hotel_location">${item.city}, ${item.country}</div></div>`;
+			el_button.innerHTML = `<div><div>${item.name}</div><div class="hotel_location">${item.city}, ${item.country}</div></div><div class="location_code">${'city' === item.type ? '🏙' : 'house' === item.type ? '🏨' : ''}</div>`;
 			el_button.addEventListener( 'click', (event) => this.select(item) );
 			el.append(el_button);
 			this.el_list.appendChild(el);
