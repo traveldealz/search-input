@@ -44,7 +44,7 @@ export default class extends Base {
 			return;
 		}
 
-		fetch('https://photon.komoot.io/api/?q=' + encodeURIComponent(search) + '&osm_tag=tourism:hotel&osm_tag=place:city&limit=10')
+		fetch('https://photon.komoot.io/api/?q=' + encodeURIComponent(search) + '&osm_tag=tourism:hotel&osm_tag=place:village&limit=10')
 			.then((response) => response.json())
 			.then((data) => {
         console.log(data);
