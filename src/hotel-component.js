@@ -25,6 +25,11 @@ export default class extends Base {
 	connectedCallback() {
     super.connectedCallback();
 
+		this.el_input_location_type = this.querySelector('input[name="location_type"]');
+		this.el_input_location_city = this.querySelector('input[name="location_city"]');
+		this.el_input_location_countrycode = this.querySelector('input[name="location_countrycode"]');
+		this.el_input_location_coordinates = this.querySelector('input[name="location_coordinates"]');
+
     let el_style = document.createElement('style');
     el_style.innerHTML = style;
     this.shadowRoot.append(el_style);
@@ -39,6 +44,13 @@ export default class extends Base {
 	onSearch() {
 
 		let search = this.el_input.value.trim();
+
+		[
+			this.el_input_location_type,
+			this.el_input_location_city,
+			this.el_input_location_countrycode,
+			this.el_input_location_coordinates,
+		].forEach(el => el && el.value ? el.value = '' : '');
 
 		if (3 > search.length) {
 			return;
@@ -61,9 +73,11 @@ export default class extends Base {
 			let item = {};
 			item.id = feature.properties.osm_id;
 			item.name = feature.properties.name;
-			item.type = feature.properties.type;
+			item.type = feature.properties.osm_value;
 			item.city = 'city' === item.type ? feature.properties.name : feature.properties.city;
 			item.country = feature.properties.country;
+			item.countrycode = feature.properties.countrycode;
+			item.coordinates = feature.geometry.coordinates[0] + ',' + feature.geometry.coordinates[1];
       return item;
     } ).forEach( item => {
 			let el = document.createElement('li');
@@ -73,12 +87,15 @@ export default class extends Base {
 			el.setAttribute('aria-selected', 'false');
 			el.dataset.id = item.id;
 			el.dataset.name = item.name;
+			el.dataset.type = item.osm_value;
 			el.dataset.city = item.city;
 			el.dataset.country = item.country;
+			el.dataset.countrycode = item.countrycode;
+			el.dataset.coordinates = item.coordinates;
 			let el_button = document.createElement('button');
 			el_button.setAttribute('class', 'result_list_item_button');
 			el_button.type = 'button';
-			el_button.innerHTML = `<div><div>${item.name}</div><div class="hotel_location">${item.city}, ${item.country}</div></div><div class="location_code">${'city' === item.type ? '🏙' : 'house' === item.type ? '🏨' : ''}</div>`;
+			el_button.innerHTML = `<div><div>${item.name}</div><div class="hotel_location">${item.city}, ${item.country}</div></div><div class="location_code">${'city' === item.type ? '🏙' : 'hotel' === item.type ? '🏨' : ''}</div>`;
 			el_button.addEventListener( 'click', (event) => this.select(item) );
 			el.append(el_button);
 			this.el_list.appendChild(el);
@@ -95,6 +112,18 @@ export default class extends Base {
 			this.el_input.value = item.name;
 			this.el_input.dispatchEvent(new Event('change'));
 			this.el_input.dispatchEvent(new Event('change', { bubbles: true }));
+			if (this.el_input_location_type) {
+				this.el_input_location_type.value = item.type;
+			}
+			if (this.el_input_location_city) {
+				this.el_input_location_city.value = item.city;
+			}
+			if (this.el_input_location_countrycode) {
+				this.el_input_location_countrycode.value = item.countrycode;
+			}
+			if (this.el_input_location_coordinates) {
+				this.el_input_location_coordinates.value = item.coordinates;
+			}
 		}
 		this.setOverlay(item.name);
 		this.hideList('');
