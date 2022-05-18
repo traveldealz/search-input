@@ -30,7 +30,7 @@ export default class extends Base {
 		village: '🏡',
 		hotel: '🏨',
 		station: '🚉',
-
+		stop: '🚉',
 	};
 
 	connectedCallback() {
