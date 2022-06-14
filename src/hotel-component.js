@@ -91,7 +91,7 @@ export default class extends Base {
 			item.state = feature.properties.state;
 			item.country = feature.properties.country;
 			item.countrycode = feature.properties.countrycode;
-			item.coordinates = feature.geometry.coordinates[0] + ',' + feature.geometry.coordinates[1];
+			item.coordinates = feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0];
       return item;
     } ).forEach( item => {
 			let el = document.createElement('li');
