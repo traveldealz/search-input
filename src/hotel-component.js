@@ -127,24 +127,24 @@ export default class extends Base {
 			this.el_input.value = item.name;
 			this.el_input.dispatchEvent(new Event('change'));
 			this.el_input.dispatchEvent(new Event('change', { bubbles: true }));
-			if (this.el_input_location_id) {
-				this.el_input_location_id.value = item.id;
-			}
-			if (this.el_input_location_type) {
-				this.el_input_location_type.value = item.type;
-			}
-			if (this.el_input_location_city) {
-				this.el_input_location_city.value = item.city;
-			}
-			if (this.el_input_location_state) {
-				this.el_input_location_state.value = item.state;
-			}
-			if (this.el_input_location_countrycode) {
-				this.el_input_location_countrycode.value = item.countrycode;
-			}
-			if (this.el_input_location_coordinates) {
-				this.el_input_location_coordinates.value = item.coordinates;
-			}
+		}
+		if (this.el_input_location_id) {
+			this.el_input_location_id.value = item.id;
+		}
+		if (this.el_input_location_type) {
+			this.el_input_location_type.value = item.type;
+		}
+		if (this.el_input_location_city) {
+			this.el_input_location_city.value = item.city;
+		}
+		if (this.el_input_location_state) {
+			this.el_input_location_state.value = item.state;
+		}
+		if (this.el_input_location_countrycode) {
+			this.el_input_location_countrycode.value = item.countrycode;
+		}
+		if (this.el_input_location_coordinates) {
+			this.el_input_location_coordinates.value = item.coordinates;
 		}
 		this.setOverlay(item.name);
 		this.hideList('');
