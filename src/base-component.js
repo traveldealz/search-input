@@ -104,6 +104,8 @@ const debounce = (fn, delay) => {
 
 export default class extends HTMLElement {
 
+	inputprefix = 'location';
+
 	constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -115,6 +117,7 @@ export default class extends HTMLElement {
 		this.results = [];
 
 		this.dark = this.hasAttribute('dark') ? 'true' == this.getAttribute('dark') : false;
+		this.inputprefix = this.hasAttribute('inputprefix') ? this.getAttribute('inputprefix') : this.inputprefix;
 		
 		this.shadowRoot.append(template.content.cloneNode(true));
 
