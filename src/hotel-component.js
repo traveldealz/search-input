@@ -36,12 +36,12 @@ export default class extends Base {
 	connectedCallback() {
     super.connectedCallback();
 
-		this.el_input_location_id = this.querySelector('input[name="location_id"]');
-		this.el_input_location_type = this.querySelector('input[name="location_type"]');
-		this.el_input_location_city = this.querySelector('input[name="location_city"]');
-		this.el_input_location_state = this.querySelector('input[name="location_state"]');
-		this.el_input_location_countrycode = this.querySelector('input[name="location_countrycode"]');
-		this.el_input_location_coordinates = this.querySelector('input[name="location_coordinates"]');
+		this.el_input_location_id = this.querySelector(`input[name="${this.inputprefix}_id"]`);
+		this.el_input_location_type = this.querySelector(`input[name="${this.inputprefix}_type"]`);
+		this.el_input_location_city = this.querySelector(`input[name="${this.inputprefix}_city"]`);
+		this.el_input_location_state = this.querySelector(`input[name="${this.inputprefix}_state"]`);
+		this.el_input_location_countrycode = this.querySelector(`input[name="${this.inputprefix}_countrycode"]`);
+		this.el_input_location_coordinates = this.querySelector(`input[name="${this.inputprefix}_coordinates"]`);
 
     let el_style = document.createElement('style');
     el_style.innerHTML = style;
