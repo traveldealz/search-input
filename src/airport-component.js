@@ -113,7 +113,7 @@ export default class extends Base {
 			return;
 		}
 
-		fetch('https://data.travel-dealz.eu/api/airports?search=' + encodeURIComponent(search))
+		fetch('https://data.travel-dealz.eu/api/airports?search=' + encodeURIComponent(search) + '&type=airport,station,area')
 			.then((response) => response.json())
 			.then((data) => {
 				if (0 === data.data.length) {
