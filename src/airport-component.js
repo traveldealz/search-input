@@ -113,7 +113,7 @@ export default class extends Base {
 			return;
 		}
 
-		fetch('https://data.travel-dealz.eu/api/airports?search=' + encodeURIComponent(search) + '&type=airport,station,area')
+		fetch('https://data.travel-dealz.net/api/airports?search=' + encodeURIComponent(search) + '&type=airport,station,area')
 			.then((response) => response.json())
 			.then((data) => {
 				if (0 === data.data.length) {
@@ -125,7 +125,7 @@ export default class extends Base {
 	}
 
 	loadAirports() {
-		fetch('https://data.travel-dealz.eu/api/airports/' + this.airports.join('/') )
+		fetch('https://data.travel-dealz.net/api/airports/' + this.airports.join('/') )
 			.then((response) => response.json())
 			.then((data) => {
 
@@ -194,7 +194,7 @@ export default class extends Base {
 			return;
 		}
 
-		fetch('https://farecollection.travel-dealz.de/api/airports/' + encodeURIComponent(value))
+		fetch('https://data.travel-dealz.net/api/airports/' + encodeURIComponent(value))
 			.then((response) => response.json())
 			.then((data) => {
 				if (0 === data.length) {
